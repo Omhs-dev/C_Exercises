@@ -6,7 +6,7 @@
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:35:30 by ohamadou          #+#    #+#             */
-/*   Updated: 2023/08/18 17:46:17 by ohamadou         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:11:06 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void repeat_alpha(char *str)
 		if (*str >= 'a' && *str <= 'z')
 			*str = (*str + 13 - 'a') % 26 + 'a';
 		else if (*str >= 'A' && *str <= 'Z')
-			*str = (*str + 13 - 'a') % 26 + 'A';
+			*str = (*str + 13 - 'A') % 26 + 'A';
 		write(1, str, 1);
 		++str;
 	}
