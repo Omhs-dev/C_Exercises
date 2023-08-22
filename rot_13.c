@@ -12,15 +12,6 @@
 
 #include <unistd.h>
 
-void ft_putchar_r(char c, int i)
-{
-	while (i > 0)
-	{
-		write(1, &c, 1);
-		--i;
-	}
-}
-
 void repeat_alpha(char *str)
 {
 	while (*str)
