@@ -7,7 +7,7 @@ void alpha_mirror(char *str)
         if (*str >= 'a' && *str <= 'z')
             *str = 'z' - *str + 'a';
         else if (*str >= 'A' && *str <= 'Z')
-            *str = 'Z' - *str + 'a';
+            *str = 'Z' - *str + 'A';
         write(1, str, 1);
         str++;
     }

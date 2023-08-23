@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 21:25:22 by ohamadou          #+#    #+#             */
-/*   Updated: 2023/06/21 21:34:58 by ohamadou         ###   ########.fr       */
+/*   Created: 2023/08/17 02:32:20 by ohamadou          #+#    #+#             */
+/*   Updated: 2023/08/17 02:39:34 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,19 @@
 
 int	ft_strlen(char *str)
 {
-	int	n;
+	int i = 0;
 
-	n = 0;
-	while (*str)
-	{
-		str++;
-		n++;
-	}
-	return (n);
+	while (str[i])
+		i++;
+	return (i);
 }
 
-// int main(void)
-// {
-// 	char str[50];
-//    int len;
+int main()
+{
+	// char src[40];
+	// char dest[100];
 
-//    len = ft_strlen("hello");
-//    printf("Length of |%s| is |%d|\n", str, len);
-// }
+	int len = ft_strlen("This");
+	// ft_strcpy(dest, src);
+	printf("Final copied string : %d\n", len);
+}

@@ -5,29 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 18:31:55 by ohamadou          #+#    #+#             */
-/*   Updated: 2023/06/21 19:56:55 by ohamadou         ###   ########.fr       */
+/*   Created: 2023/08/15 16:15:20 by ohamadou          #+#    #+#             */
+/*   Updated: 2023/08/15 16:38:43 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-char	first_word(char *str)
+char first_word(char *str)
 {
-	while (*str == 32 || *str == 9)
-		str++;
-	while ((*str != 32 || *str == 9) && *str)
+	int i;
+
+	i = 0;
+	while (str[i])
 	{
-		write(1, &*str++, 1);
+		if (str[i] == ' ' || str[i] == 9)
+		{
+			return (1);
+			write(1, "\n", 2);
+		}
+		write(1, &str[i], 1);
+		i++;
 	}
-	return (*str);
+	return (str[i]);
 }
 
-int	main(int argc, char **argv)
+int main(void)
 {
-	int	i = 0;
-
-	if (argc == 2)
-		first_word(&argv[1][i++]);
-	write(1, "\n", 1);
+	first_word("");
+	return (0);
 }
