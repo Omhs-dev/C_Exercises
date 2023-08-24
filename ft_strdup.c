@@ -39,11 +39,8 @@ char    *ft_strdup(char *src)
 int main()
 {
     char source[] = "TestHere";
- 
-    // A copy of source is created dynamically
-    // and pointer to copy is returned.
     char* target = ft_strdup(source);
- 
+
     printf("%s\n", target);
     return 0;
 }
