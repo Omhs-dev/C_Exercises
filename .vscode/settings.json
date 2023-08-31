@@ -1,7 +1,8 @@
 {
 	"files.associations": {
 		"unistd.h": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"stdlib.h": "c"
 	},
 	"terminal.integrated.shellIntegration.suggestEnabled": false
 }
