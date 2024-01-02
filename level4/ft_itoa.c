@@ -5,55 +5,74 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/26 19:47:01 by ohamadou          #+#    #+#             */
-/*   Updated: 2023/08/26 20:54:08 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/02 13:52:58 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/02 17:47:38 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int	len_nb(long nbr)
+int len_nbr(int n)
 {
-	int	i;
+	int i;
 
 	i = 0;
-	if (nbr == 0)
-		return (1);
-	if (nbr < 0)
-		i++;
-	while (nbr != 0)
+	if (n <= 0)
+		i = 1;
+	while (n)
 	{
-		nbr = nbr / 10;
+		n = n / 10;
 		i++;
 	}
 	return (i);
 }
 
-char	*ft_itoa(int nbr)
+char *ft_itoa(int n)
 {
-	long	len;
-	long	tem;
-	char	*res;
-
-	len = len_nb(nbr);
-	tem = nbr;
-	if (nbr < 0)
-		tem *= -1;
-	res = malloc(sizeof(char) * (len + 1));
-	if (!res)
+	long len;
+	long nb;
+	char *mem;
+	
+	len = len_nbr(n);
+	mem = (char *)malloc(sizeof(char) * (len + 1));
+	if (!mem)
 		return (NULL);
-	res[len] = 0;
-	if (tem == 0)
-		res[0] = '0';
+	mem[len--] = '\0';
+	if (n < 0)
+		nb = -n;
 	else
+		nb = n;
+	while (len >= 0)
 	{
-		while (len--, tem != 0)
-		{
-			res[len] = (tem % 10) + '0';
-			tem = (tem - (tem % 10)) / 10;
-		}
-		if (nbr < 0)
-			res[len] = '-';
+		mem[len] = (nb % 10) + 48;
+		len--;
+		nb /= 10;
 	}
-	return (res);
+	if (n < 0)
+		mem[0] = '-';
+	return (mem);
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int num1 = 123;
+    int num2 = -4567;
+    int num3 = 0;
+
+    char *str1 = ft_itoa(num1);
+    char *str2 = ft_itoa(num2);
+    char *str3 = ft_itoa(num3);
+
+    printf("Integer: %d, String: %s\n", num1, str1);
+    printf("Integer: %d, String: %s\n", num2, str2);
+    printf("Integer: %d, String: %s\n", num3, str3);
+
+    // Don't forget to free the allocated memory
+    free(str1);
+    free(str2);
+    free(str3);
+
+    return 0;
 }
