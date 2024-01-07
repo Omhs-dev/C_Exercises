@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rstr_capitalizer.c                                 :+:      :+:    :+:   */
+/*   wdmatch.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 09:46:27 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/04 10:03:55 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/07 22:42:57 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/07 22:55:31 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,37 +17,42 @@ void ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void rstr_capitalizer(char *str)
+void ft_putstr(char *str)
+{
+	while (*str)
+		write(1, &*str++, 1);
+}
+
+int ft_strlen(char *str)
 {
 	int i = 0;
 
 	while (str[i])
-	{
-		if (str[i] >= 'A' && str[i] <= 'Z')
-			str[i] = str[i] + 32;
-		if (str[i] >= 'a' && str[i] <= 'z' && (str[i + 1] == ' '
-				|| str[i + 1] == '\t' || str[i + 1] == '\0'))
-			str[i] = str[i] - 32;
-		ft_putchar(str[i]);
 		i++;
-	}
+	return (i);
 }
 
-int main(int argc, char *argv[])
+void wdmatch(char *first, char *second)
 {
-	int i;
+	int i_f;
+	int i_s;
 
-	if (argc < 2)
-		ft_putchar('\n');
-	else
+	i_f = 0;
+	i_s = 0;
+	while (second[i_s])
 	{
-		i = 1;
-		if (i < argc)
-		{
-			rstr_capitalizer(argv[i]);
-			ft_putchar('\n');
-			i++;
-		}
+		if (first[i_f] == second[i_s])
+			i_f++;
+		i_s++;
 	}
+	if (i_f == ft_strlen(first))
+		ft_putstr(first);
+}
+
+int main(int argc, char **argv)
+{
+	if (argc == 3)
+		wdmatch(argv[1], argv[2]);
+	ft_putchar('\n');
 	return (0);
 }

@@ -1,53 +1,84 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rstr_capitalizer.c                                 :+:      :+:    :+:   */
+/*   union.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 09:46:27 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/04 10:03:55 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/07 21:54:38 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/07 22:42:37 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void rstr_capitalizer(char *str)
+int check(char c, char *str, int len)
 {
 	int i = 0;
 
-	while (str[i])
+	while (i < len)
 	{
-		if (str[i] >= 'A' && str[i] <= 'Z')
-			str[i] = str[i] + 32;
-		if (str[i] >= 'a' && str[i] <= 'z' && (str[i + 1] == ' '
-				|| str[i + 1] == '\t' || str[i + 1] == '\0'))
-			str[i] = str[i] - 32;
-		ft_putchar(str[i]);
+		if (str[i] == c)
+			return (0);
 		i++;
 	}
+	return (1);
 }
 
-int main(int argc, char *argv[])
+void print_union(char *str, char *str2)
 {
-	int i;
+	int i = 0;
+	int j = 0;
+	int k = 0;
 
-	if (argc < 2)
-		ft_putchar('\n');
-	else
+	while (str[i])
+		i++;
+	while (str2[j])
 	{
-		i = 1;
-		if (i < argc)
-		{
-			rstr_capitalizer(argv[i]);
-			ft_putchar('\n');
-			i++;
-		}
+		str[i] = str2[j];
+		i++;
+		j++;
 	}
+	i--;
+	while (k <= i)
+	{
+		if (check(str[k], str, k) == 1)
+			write(1, &str[k], 1);
+		k++;
+	}
+}
+
+int	main(int argc, char **argv)
+{
+	if (argc == 3)
+		print_union(argv[1], argv[2]);
+	write(1, "\n", 1);
 	return (0);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

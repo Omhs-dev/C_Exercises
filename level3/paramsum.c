@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rstr_capitalizer.c                                 :+:      :+:    :+:   */
+/*   paramsum.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 09:46:27 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/04 10:03:55 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/04 07:07:01 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/04 07:10:20 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,37 +17,21 @@ void ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void rstr_capitalizer(char *str)
+void mini_putnbr(int nbr)
 {
-	int i = 0;
-
-	while (str[i])
+	if (nbr > 9)
 	{
-		if (str[i] >= 'A' && str[i] <= 'Z')
-			str[i] = str[i] + 32;
-		if (str[i] >= 'a' && str[i] <= 'z' && (str[i + 1] == ' '
-				|| str[i + 1] == '\t' || str[i + 1] == '\0'))
-			str[i] = str[i] - 32;
-		ft_putchar(str[i]);
-		i++;
+		mini_putnbr(nbr / 10);
+		mini_putnbr(nbr % 10);
 	}
+	else
+		ft_putchar(nbr + '0');
 }
 
 int main(int argc, char *argv[])
 {
-	int i;
-
-	if (argc < 2)
-		ft_putchar('\n');
-	else
-	{
-		i = 1;
-		if (i < argc)
-		{
-			rstr_capitalizer(argv[i]);
-			ft_putchar('\n');
-			i++;
-		}
-	}
+	(void)argv;
+	mini_putnbr(argc - 1);
+	ft_putchar('\n');
 	return (0);
 }

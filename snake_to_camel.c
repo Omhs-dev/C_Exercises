@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_size.c                                     :+:      :+:    :+:   */
+/*   snake_to_camel.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 06:13:53 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/04 06:18:56 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/07 21:25:54 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/07 21:51:22 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list.h"
+#include <unistd.h>
 
-int	ft_list_size(t_list *begin_list)
+void snake_to_camel(char *str)
 {
-	if (begin_list == NULL)
-		return (0);
-	else
-		return(1 + ft_list_size(begin_list->next));
+	while (*str)
+	{
+		if (*str == '_')
+		{
+			str++;
+			*str = *str - 32;
+		}
+		write(1, str, 1);
+		str++;
+	}
+}
+
+int main(int argc, char **argv)
+{
+	if (argc == 2)
+		snake_to_camel(argv[1]);
+	write(1, "\n", 1);
+	return (0);
 }

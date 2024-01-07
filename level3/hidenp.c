@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rstr_capitalizer.c                                 :+:      :+:    :+:   */
+/*   hidenp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 09:46:27 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/04 10:03:55 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/04 06:35:01 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/04 06:49:07 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,37 +17,35 @@ void ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void rstr_capitalizer(char *str)
+int ft_strlen(char *str)
 {
 	int i = 0;
-
 	while (str[i])
-	{
-		if (str[i] >= 'A' && str[i] <= 'Z')
-			str[i] = str[i] + 32;
-		if (str[i] >= 'a' && str[i] <= 'z' && (str[i + 1] == ' '
-				|| str[i + 1] == '\t' || str[i + 1] == '\0'))
-			str[i] = str[i] - 32;
-		ft_putchar(str[i]);
 		i++;
+	return (i);
+}
+
+void hidenp(char *first, char *second)
+{
+	int i_first = 0;
+	int i_sec = 0;
+	
+	while (second[i_sec])
+	{
+		if (first[i_first] == second[i_sec])
+			i_first++;
+		i_sec++;
 	}
+	if (i_first == ft_strlen(first))
+		ft_putchar('1');
+	else
+		ft_putchar('0');
 }
 
 int main(int argc, char *argv[])
 {
-	int i;
-
-	if (argc < 2)
-		ft_putchar('\n');
-	else
-	{
-		i = 1;
-		if (i < argc)
-		{
-			rstr_capitalizer(argv[i]);
-			ft_putchar('\n');
-			i++;
-		}
-	}
+	if (argc == 3)
+		hidenp(argv[1], argv[2]);
+	ft_putchar('\n');
 	return (0);
 }

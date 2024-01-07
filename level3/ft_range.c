@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_size.c                                     :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 06:13:53 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/04 06:18:56 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/04 06:20:45 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/04 06:32:45 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list.h"
+#include <stdlib.h>
 
-int	ft_list_size(t_list *begin_list)
+int     *ft_range(int start, int end)
 {
-	if (begin_list == NULL)
-		return (0);
+	int *range;
+	int i;
+	
+	if (start > end)
+		i = (start - end) + 1;
 	else
-		return(1 + ft_list_size(begin_list->next));
+		i = (end - start) + 1;
+	range = (int *)malloc(sizeof(int) * i);
+	while (i)
+	{
+		range[i--] = start;
+		start -= (start > end) ? (-1) : (1);
+	}
+	range[i] = start;
+	return (range);
 }

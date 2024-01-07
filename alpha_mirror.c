@@ -1,53 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rstr_capitalizer.c                                 :+:      :+:    :+:   */
+/*   alpha_mirror.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 09:46:27 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/04 10:03:55 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/05 14:45:08 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/05 17:07:44 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void ft_putchar(char c)
+void alpha_mirror(char *str)
 {
-	write(1, &c, 1);
-}
-
-void rstr_capitalizer(char *str)
-{
-	int i = 0;
-
-	while (str[i])
+	while (*str)
 	{
-		if (str[i] >= 'A' && str[i] <= 'Z')
-			str[i] = str[i] + 32;
-		if (str[i] >= 'a' && str[i] <= 'z' && (str[i + 1] == ' '
-				|| str[i + 1] == '\t' || str[i + 1] == '\0'))
-			str[i] = str[i] - 32;
-		ft_putchar(str[i]);
-		i++;
+		if (*str >= 'a' && *str <= 'z')
+			*str = 'z' - *str + 'a';
+		if (*str >= 'A' && *str <= 'Z')
+			*str = 'Z' - *str + 'A';
+		write(1, str, 1);
+		str++;
 	}
 }
 
 int main(int argc, char *argv[])
 {
-	int i;
-
-	if (argc < 2)
-		ft_putchar('\n');
-	else
-	{
-		i = 1;
-		if (i < argc)
-		{
-			rstr_capitalizer(argv[i]);
-			ft_putchar('\n');
-			i++;
-		}
-	}
+	if (argc == 2)
+		alpha_mirror(argv[1]);
+	write(1, "\n", 1);
 	return (0);
 }

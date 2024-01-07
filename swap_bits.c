@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_size.c                                     :+:      :+:    :+:   */
+/*   swap_bits.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 06:13:53 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/04 06:18:56 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/07 21:51:56 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/07 21:54:16 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list.h"
-
-int	ft_list_size(t_list *begin_list)
+unsigned char	swap_bits(unsigned char octet)
 {
-	if (begin_list == NULL)
-		return (0);
-	else
-		return(1 + ft_list_size(begin_list->next));
+	return ((octet >> 4) | (4 << octet));
 }
