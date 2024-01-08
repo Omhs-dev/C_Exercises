@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pgcd.c                                             :+:      :+:    :+:   */
+/*   ft_list_size.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 07:20:08 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/08 19:42:11 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/08 18:18:32 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/08 18:29:25 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "ft_list.h"
 
-void ft_pgcd(int nbr_1, int nbr_2)
+int	ft_list_size(t_list *begin_list)
 {
-	int div;
-	int pgcd;
-	
-	div = 1;
-	if (nbr_1 <= 0 || div <= 0)
-		return ;
-	while ((div <= nbr_1) || (div <= nbr_2))
+	int size;
+
+	size = 0;
+	while (begin_list)
 	{
-		if (((nbr_1 % div) == 0) && ((nbr_2 % div) == 0))
-			pgcd = div;
-		div++;
+		size++;
+		begin_list = begin_list->next;
 	}
-	printf("%d", pgcd);
+	return (size);
 }

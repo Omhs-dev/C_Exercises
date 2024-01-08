@@ -1,46 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   epur_str.c                                         :+:      :+:    :+:   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 05:46:20 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/08 16:33:19 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/08 18:07:02 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/08 18:13:20 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void epur_str(char *str)
+int	ft_atoi_base(const char *str, int str_base)
 {
 	int i;
-
+	int sign;
+	int res;
+	
 	i = 0;
-	while (str[i] == ' ' || str[i] == '\t')
-		i++;
-	while (str[i])
+	sign = 1;
+	res = 0;
+	if (str[i] == '-')
 	{
-		if (str[i] == ' ' || str[i] == '\t')
-		{
-			if (str[i + 1] > ' ' && str[i + 1] != '\0')
-				ft_putchar(' ');
-		}
-		else if (str[i] != ' ' && str[i] != '\t')
-			ft_putchar(str[i]);
+		sign = -1;
 		i++;
 	}
-}
-
-int main(int argc, char *argv[])
-{
-	if (argc == 2)
-		epur_str(argv[1]);
-	ft_putchar('\n');
-	return (0);
+	while (str[i])
+	{
+		res *= str_base;
+		if (str[i] >= '0' && str[i] <= '9')
+			res += str[i] - '0';
+		else if (str[i] >= 'A' && str[i] <= 'Z')
+			res += str[i] - '7';
+		else if (str[i] >= 'a' && str[i] <= 'z')
+			res += str[i] - 'W';
+		i++;
+	}
+	return (res * sign);
 }

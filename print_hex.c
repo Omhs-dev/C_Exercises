@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   epur_str.c                                         :+:      :+:    :+:   */
+/*   print_hex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 05:46:20 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/08 16:33:19 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/08 20:58:00 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/08 21:15:47 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,31 @@ void ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void epur_str(char *str)
+int mini_atoi(char *str)
 {
-	int i;
+	int i = 0;
+	int opr = 0;
 
-	i = 0;
-	while (str[i] == ' ' || str[i] == '\t')
-		i++;
 	while (str[i])
 	{
-		if (str[i] == ' ' || str[i] == '\t')
-		{
-			if (str[i + 1] > ' ' && str[i + 1] != '\0')
-				ft_putchar(' ');
-		}
-		else if (str[i] != ' ' && str[i] != '\t')
-			ft_putchar(str[i]);
-		i++;
+		opr = opr * 10;
+		opr = opr + str[i] - '0';
+		++i;
 	}
+	return (opr);
 }
 
-int main(int argc, char *argv[])
+void print_hex(int n)
+{
+	if (n >= 16)
+		print_hex(n / 16);
+	ft_putchar("0123456789abcdef"[n % 16]);
+}
+
+int main(int argc, char **argv)
 {
 	if (argc == 2)
-		epur_str(argv[1]);
-	ft_putchar('\n');
+		print_hex(mini_atoi(argv[1]));
+	write(1, "\n", 1);
 	return (0);
 }

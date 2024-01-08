@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pgcd.c                                             :+:      :+:    :+:   */
+/*   ft_list.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 07:20:08 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/08 19:42:11 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/08 18:20:47 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/08 18:22:03 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#ifndef FT_LIST_H
+# define FT_LIST_H
 
-void ft_pgcd(int nbr_1, int nbr_2)
+typedef struct    s_list
 {
-	int div;
-	int pgcd;
-	
-	div = 1;
-	if (nbr_1 <= 0 || div <= 0)
-		return ;
-	while ((div <= nbr_1) || (div <= nbr_2))
-	{
-		if (((nbr_1 % div) == 0) && ((nbr_2 % div) == 0))
-			pgcd = div;
-		div++;
-	}
-	printf("%d", pgcd);
-}
+    struct s_list *next;
+    void          *data;
+}                 t_list;
+
+#endif

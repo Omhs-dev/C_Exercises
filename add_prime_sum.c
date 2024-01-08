@@ -6,7 +6,7 @@
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 15:50:53 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/08 16:10:58 by ohamadou         ###   ########.fr       */
+/*   Updated: 2024/01/08 16:23:33 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int ft_atoi(char *s)
 	int res = 0;
 
 	while (*s)
-		res = res * 10 + *s++ - 48;
+		res = res * 10 + *s++ - '0';
 	return (res);
 }
 

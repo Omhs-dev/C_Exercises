@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   epur_str.c                                         :+:      :+:    :+:   */
+/*   hidenp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 05:46:20 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/08 16:33:19 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/08 18:57:56 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/08 19:07:38 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,36 @@ void ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void epur_str(char *str)
+int ft_strlen(char *str)
 {
-	int i;
+	int i = 0;
 
-	i = 0;
-	while (str[i] == ' ' || str[i] == '\t')
-		i++;
 	while (str[i])
-	{
-		if (str[i] == ' ' || str[i] == '\t')
-		{
-			if (str[i + 1] > ' ' && str[i + 1] != '\0')
-				ft_putchar(' ');
-		}
-		else if (str[i] != ' ' && str[i] != '\t')
-			ft_putchar(str[i]);
 		i++;
+	return (i);
+}
+
+void hidenp(char *first, char *second)
+{
+	int i_f = 0;
+	int i_s = 0;
+
+	while (second[i_s])
+	{
+		if (first[i_f] == second[i_s])
+			i_f++;
+		i_s++;
 	}
+	if (i_f == ft_strlen(first))
+		ft_putchar('1');
+	else
+		ft_putchar('0');
 }
 
 int main(int argc, char *argv[])
 {
-	if (argc == 2)
-		epur_str(argv[1]);
+	if (argc == 3)
+		hidenp(argv[1], argv[2]);
 	ft_putchar('\n');
 	return (0);
 }
