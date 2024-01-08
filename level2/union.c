@@ -1,58 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wdmatch.c                                          :+:      :+:    :+:   */
+/*   union.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/07 22:42:57 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/07 22:55:31 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/07 21:54:38 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/08 15:25:40 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void ft_putstr(char *str)
-{
-	while (*str)
-		write(1, &*str++, 1);
-}
-
-int ft_strlen(char *str)
+int check(char c, char *str, int len)
 {
 	int i = 0;
 
+	while (i < len)
+	{
+		if (str[i] == c)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+void print_union(char *str, char *str2)
+{
+	int i = 0;
+	int j = 0;
+	int k = 0;
+
 	while (str[i])
 		i++;
-	return (i);
-}
-
-void wdmatch(char *first, char *second)
-{
-	int i_f;
-	int i_s;
-
-	i_f = 0;
-	i_s = 0;
-	while (second[i_s])
+	while (str2[j])
 	{
-		if (first[i_f] == second[i_s])
-			i_f++;
-		i_s++;
+		str[i] = str2[j];
+		i++;
+		j++;
 	}
-	if (i_f == ft_strlen(first))
-		ft_putstr(first);
+	i--;
+	while (k <= i)
+	{
+		if (check(str[k], str, k) == 1)
+			write(1, &str[k], 1);
+		k++;
+	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	if (argc == 3)
-		wdmatch(argv[1], argv[2]);
-	ft_putchar('\n');
+		print_union(argv[1], argv[2]);
+	write(1, "\n", 1);
 	return (0);
 }
