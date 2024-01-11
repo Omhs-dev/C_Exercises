@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 06:20:45 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/04 06:32:45 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/08 18:32:04 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/09 22:28:10 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,44 @@
 
 int     *ft_range(int start, int end)
 {
-	int *range;
 	int i;
-	
-	if (start > end)
-		i = (start - end) + 1;
-	else
-		i = (end - start) + 1;
-	range = (int *)malloc(sizeof(int) * i);
-	while (i)
+	int len;
+	int *res;
+
+	i = 0;
+	len = abs(end - start) + 1;
+	res = (int *)malloc(sizeof(int) * len);
+	while (i < len)
 	{
-		range[i--] = start;
-		start -= (start > end) ? (-1) : (1);
+		if (start < end)
+		{
+			res[i] = start;
+			start++;
+			i++;
+		}
+		else
+		{
+			res[i] = start;
+			start--;
+			i++;
+		}
 	}
-	range[i] = start;
-	return (range);
+	return (res);
+}
+
+#include <stdio.h>
+
+int main()
+{
+	int start = 0;
+	int end = -3;
+	int i = 0;
+	int *res = ft_range(start, end);
+
+	while (i < abs(end - start) + 1)
+	{
+		printf("%d\n", res[i]);
+		i++;
+	}
+	return (0);
 }

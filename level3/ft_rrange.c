@@ -5,38 +5,81 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/24 10:51:18 by ohamadou          #+#    #+#             */
-/*   Updated: 2023/08/24 11:07:24 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/08 18:39:11 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/09 22:25:41 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int ft_absolute_value(int nbr)
-{
-	if (nbr < 0)
-		return (-nbr);
-	return (nbr);
-}
-
-int *ft_rrange(int start, int end)
+int     *ft_rrange(int start, int end)
 {
 	int i;
-	int size;
-	int *tab;
+	int len;
+	int *res;
 
 	i = 0;
-	if (start > end)
-		return (ft_rrange(end, start));
-	size = ft_absolute_value(start - end);
-	tab = (int *)malloc(sizeof(int) * size + 1);
-	if (!tab)
-		return (0);
-	while (i < start)
+	len = abs(end - start) + 1;
+	res = (int *)malloc(sizeof(int) * len);
+	while (i < len)
+		i++;
+	while (i)
 	{
-		tab[i] = start;
-		start++;
+		if (start < end)
+		{
+			res[i] = start;
+			start++;
+			i--;
+		}
+		else
+		{
+			res[i] = start;
+			start--;
+			i--;
+		}
+	}
+	return (res + 1);
+}
+
+// int *ft_rrange(int start, int end)
+// {
+// 	int *range;
+// 	int i = 0;
+// 	int step = 1;
+// 	int n = end - start;
+
+// 	if (n < 0)
+// 		(n *= -1);
+// 	n++;
+
+// 	range = (int *)malloc(sizeof(int) * n);
+// 	if (range)
+// 	{
+// 		if (start < end)
+// 			step = -1;
+// 		while (i < n)
+// 		{
+// 			range[i] = end;
+// 			end = end + step;
+// 			i++;
+// 		}
+// 	}
+// 	return (range);
+// }
+
+#include <stdio.h>
+
+int main()
+{
+	int start = -1;
+	int end = 2;
+	int i = 0;
+	int *res = ft_rrange(start, end);
+
+	while (i < abs(end - start) + 1)
+	{
+		printf("%d\n", res[i]);
 		i++;
 	}
-	return (tab);
+	return (0);
 }

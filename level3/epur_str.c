@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 05:46:20 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/08 16:33:19 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/08 16:23:49 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/08 16:49:26 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,24 @@ void ft_putchar(char c)
 
 void epur_str(char *str)
 {
-	int i;
+	int i = 0;
 
-	i = 0;
 	while (str[i] == ' ' || str[i] == '\t')
 		i++;
 	while (str[i])
 	{
 		if (str[i] == ' ' || str[i] == '\t')
 		{
-			if (str[i + 1] > ' ' && str[i + 1] != '\0')
+			if (str[i + 1] > ' ' && str[i + 1])
 				ft_putchar(' ');
 		}
-		else if (str[i] != ' ' && str[i] != '\t')
+		else
 			ft_putchar(str[i]);
 		i++;
 	}
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
 	if (argc == 2)
 		epur_str(argv[1]);

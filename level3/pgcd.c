@@ -5,27 +5,38 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 07:20:08 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/08 19:42:11 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/08 19:42:30 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/10 14:06:33 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-void ft_pgcd(int nbr_1, int nbr_2)
+void ft_pgcd(char *n1, char *n2)
 {
-	int div;
-	int pgcd;
-	
-	div = 1;
-	if (nbr_1 <= 0 || div <= 0)
-		return ;
-	while ((div <= nbr_1) || (div <= nbr_2))
+	int nbr1;
+	int nbr2;
+
+	nbr1 = 0;
+	nbr2 = 0;
+	if ((nbr1 = atoi(n1)) > 0 && (nbr2 = atoi(n2)) > 0)
 	{
-		if (((nbr_1 % div) == 0) && ((nbr_2 % div) == 0))
-			pgcd = div;
-		div++;
+		while (nbr1 != nbr2)
+		{
+			if (nbr1 > nbr2)
+				nbr1 -= nbr2;
+			else
+				nbr2 -= nbr1;
+		}
+		printf("%d", nbr1);
 	}
-	printf("%d", pgcd);
+}
+
+int main(int argc, char **argv)
+{
+	if (argc == 3)
+		ft_pgcd(argv[1], argv[2]);
+	printf("\n");
+	return (0);
 }

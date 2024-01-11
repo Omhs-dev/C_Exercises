@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_range.c                                         :+:      :+:    :+:   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 18:32:04 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/08 18:45:37 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/08 18:07:02 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/10 21:51:49 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-int *ft_range(int start, int end)
+int	ft_atoi_base(const char *str, int str_base)
 {
-	int i = 0;
-	int len = abs(start + end) + 1;
-	int *res = (int *)malloc(sizeof(int) * len);
+	int i;
+	int sign;
+	int res;
 
-	while (i < len)
+	i = 0;
+	sign = 1;
+	res = 0;
+	if (str[i] == '-')
 	{
-		if (start < end)
-		{
-			res[i] = start;
-			start++;
-			i++;
-		}
-		else
-		{
-			res[i] = start;
-			start++;
-			i++;
-		}
+		sign = -1;
+		i++;
 	}
-	return(res);
+	while (str[i])
+	{
+		res *= str_base;
+		if (str[i] >= '0' && str[i] <= '9')
+			res += str[i] - '0';
+		else if (str[i] >= 'A' && str[i] <= 'Z')
+			res += str[i] - '7';
+		else if (str[i] >= 'a' && str[i] <= 'z')
+			res += str[i] - 'W';
+		i++;
+	}
+	return (res * sign);
 }

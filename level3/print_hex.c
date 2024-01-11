@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 07:39:27 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/04 07:49:27 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/08 20:58:00 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/09 18:34:24 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,14 @@ void ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-int small_atoi(char *str)
+int mini_atoi(char *str)
 {
-	int i;
-	int opr;
+	int opr = 0;
 	
-	i = 0;
-	opr = 0;
-	while (str[i])
+	while (*str)
 	{
-		opr *= 10;
-		opr = opr + str[i] - '0';
-		i++;
+		opr = opr * 10;
+		opr = opr + *str++ - '0';
 	}
 	return (opr);
 }
@@ -40,10 +36,10 @@ void print_hex(int nbr)
 	ft_putchar("0123456789abcdef"[nbr % 16]);
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
 	if (argc == 2)
-		print_hex(small_atoi(argv[1]));
-	ft_putchar('\n');
+		print_hex(mini_atoi(argv[1]));
+	write(1, "\n", 1);
 	return (0);
 }

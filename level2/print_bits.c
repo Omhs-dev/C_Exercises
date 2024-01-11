@@ -6,7 +6,7 @@
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 20:48:03 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/07 21:06:14 by ohamadou         ###   ########.fr       */
+/*   Updated: 2024/01/10 21:48:53 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print_bits(unsigned char octet)
 {
 	int i = 8;
-	unsigned int bit;
+	unsigned char bit;
 
 	while (i--)
 	{

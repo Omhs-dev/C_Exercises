@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 07:07:01 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/04 07:10:20 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/08 19:33:11 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/10 12:14:51 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void ft_putchar(char c)
 
 void mini_putnbr(int nbr)
 {
-	if (nbr > 9)
+	if (nbr >= 10)
 	{
 		mini_putnbr(nbr / 10);
 		mini_putnbr(nbr % 10);
@@ -28,7 +28,7 @@ void mini_putnbr(int nbr)
 		ft_putchar(nbr + '0');
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
 	(void)argv;
 	mini_putnbr(argc - 1);

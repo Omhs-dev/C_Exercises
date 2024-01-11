@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
+/*   sort_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 18:07:02 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/08 18:13:20 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/10 23:42:01 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/11 00:33:50 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi_base(const char *str, int str_base)
+#include "list.h"
+
+t_list	*sort_list(t_list* lst, int (*cmp)(int, int))
 {
-	int i;
-	int sign;
-	int res;
-	
-	i = 0;
-	sign = 1;
-	res = 0;
-	if (str[i] == '-')
+	int swap;
+	t_list *temp;
+
+	temp = lst;
+	while (lst->next)
 	{
-		sign = -1;
-		i++;
+		if (((cmp)(lst->data, lst->next->data)))
+		{
+			swap = lst->data;
+			lst->data = lst->next->data;
+			lst->next->data = swap;
+			lst = temp;
+		}
+		else
+			lst = lst->next;
 	}
-	while (str[i])
-	{
-		res *= str_base;
-		if (str[i] >= '0' && str[i] <= '9')
-			res += str[i] - '0';
-		else if (str[i] >= 'A' && str[i] <= 'Z')
-			res += str[i] - '7';
-		else if (str[i] >= 'a' && str[i] <= 'z')
-			res += str[i] - 'W';
-		i++;
-	}
-	return (res * sign);
+	lst = temp;
+	return (lst);
 }

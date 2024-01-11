@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 06:35:01 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/08 18:57:45 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/08 18:57:56 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/10 12:04:19 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void ft_putchar(char c)
 int ft_strlen(char *str)
 {
 	int i = 0;
+
 	while (str[i])
 		i++;
 	return (i);
@@ -27,22 +28,24 @@ int ft_strlen(char *str)
 
 void hidenp(char *first, char *second)
 {
-	int i_first = 0;
-	int i_sec = 0;
-	
-	while (second[i_sec])
+	int i_f;
+	int i_s;
+
+	i_f = 0;
+	i_s = 0;
+	while (second[i_s])
 	{
-		if (first[i_first] == second[i_sec])
-			i_first++;
-		i_sec++;
+		if (first[i_f] == second[i_s])
+			i_f++;
+		i_s++;
 	}
-	if (i_first == ft_strlen(first))
+	if (i_f == ft_strlen(first))
 		ft_putchar('1');
 	else
 		ft_putchar('0');
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
 	if (argc == 3)
 		hidenp(argv[1], argv[2]);

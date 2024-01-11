@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_hex.c                                        :+:      :+:    :+:   */
+/*   rev_wstr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 20:58:00 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/08 21:15:47 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/11 00:54:00 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/11 02:02:40 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,42 @@ void ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-int mini_atoi(char *str)
+int is_space(char c)
 {
-	int i = 0;
-	int opr = 0;
-
-	while (str[i])
-	{
-		opr = opr * 10;
-		opr = opr + str[i] - '0';
-		++i;
-	}
-	return (opr);
+	if ((c == ' ') || (c == '\t'))
+		return (1);
+	return (0);
 }
 
-void print_hex(int n)
+void rev_wstr(char *str)
 {
-	if (n >= 16)
-		print_hex(n / 16);
-	ft_putchar("0123456789abcdef"[n % 16]);
+	int i;
+	int j;
+	int first_word;
+
+	i = 0;
+	first_word = 1;
+	while (str[i])
+		i++;
+	while (i >= 0)
+	{
+		while (i >= 0 && (!str[i] || is_space(str[i])))
+			i--;
+		j = i;
+		while (j >= 0 && !is_space(str[j]))
+			j--;
+		if (first_word == 0)
+			ft_putchar(' ');
+		write(1, str + j + 1, i - j);
+		first_word = 0;
+		i = j;
+	}
 }
 
 int main(int argc, char **argv)
 {
 	if (argc == 2)
-		print_hex(mini_atoi(argv[1]));
+		rev_wstr(argv[1]);
 	write(1, "\n", 1);
 	return (0);
 }
