@@ -6,7 +6,7 @@
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:56:09 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/02 20:21:13 by ohamadou         ###   ########.fr       */
+/*   Updated: 2024/01/11 12:06:02 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 {
 	int i;
 	int num;
-	
+
 	if (argc == 2)
 	{
 		i = 1;
@@ -35,7 +35,6 @@ int main(int argc, char *argv[])
 				num /= i;
 				i = 1;
 			}
-			
 		}
 		
 	}

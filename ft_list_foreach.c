@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_list.c                                        :+:      :+:    :+:   */
+/*   ft_list_foreach.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 23:42:01 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/14 18:52:29 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/11 10:40:58 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/13 18:58:56 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list.h"
-
-t_list	*sort_list(t_list* lst, int (*cmp)(int, int))
+typedef struct    s_list
 {
-	t_list *temp;
-	int swap;
-	
-	temp = lst;
-	while (lst->next)
+    struct s_list *next;
+    void          *data;
+}                 t_list;
+
+void    ft_list_foreach(t_list *begin_list, void (*f)(void *))
+{
+	while (begin_list)
 	{
-		if ((cmp)(lst->data, lst->next->data) == 0)
-		{
-			swap = lst->data;
-			lst->data = lst->next->data;
-			lst->next->data = swap;
-			lst = temp;
-		}
-		else
-			lst = lst->next;
+		(*f)(begin_list->data);
+		begin_list = begin_list->next;
 	}
-	lst = temp;
-	return (lst);
 }

@@ -1,35 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_list.c                                        :+:      :+:    :+:   */
+/*   fprime.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 23:42:01 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/14 18:52:29 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/13 17:49:34 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/13 18:52:13 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
-t_list	*sort_list(t_list* lst, int (*cmp)(int, int))
+void fprime(int nbr)
 {
-	t_list *temp;
-	int swap;
-	
-	temp = lst;
-	while (lst->next)
+	int i = 2;
+
+	if (nbr == 1)
 	{
-		if ((cmp)(lst->data, lst->next->data) == 0)
-		{
-			swap = lst->data;
-			lst->data = lst->next->data;
-			lst->next->data = swap;
-			lst = temp;
-		}
-		else
-			lst = lst->next;
+		printf("1");
+		return ;
 	}
-	lst = temp;
-	return (lst);
+	while (nbr >= i)
+	{
+		if (nbr % i == 0)
+		{
+			printf("%d", i);
+			if (nbr != i)
+				printf("*");
+			nbr = nbr / i;
+			i--;
+		}
+		i++;
+	}
+}
+
+int main(int argc, char **argv)
+{
+	if (argc == 2)
+		fprime(atoi(argv[1]));
+	printf("\n");
+	return (0);
 }

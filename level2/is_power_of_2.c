@@ -6,21 +6,17 @@
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 19:39:52 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/07 19:45:54 by ohamadou         ###   ########.fr       */
+/*   Updated: 2024/01/14 19:55:03 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	    is_power_of_2(unsigned int n)
 {
-	unsigned long int i = 1;
-
-	while (i <= n)
-	{
-		if (i == n)
-			return (1);
-		i = i * 2;
-	}
-	return (0);
+	if (n == 0)
+		return (0);
+	while (n % 2 == 0)
+		n = n / 2;
+	return ((n == 1) ? 1 : 0);
 }
 #include <stdio.h>
 

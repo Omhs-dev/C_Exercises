@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/25 18:46:13 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/14 20:56:36 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/11 09:32:04 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/13 19:14:57 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,72 +14,36 @@
 
 int is_delimiter(char c)
 {
-	return (c == ' ' || c == '\n' || c == '\t');
+	return (c == ' ' || c == '\t' || c == '\n');
 }
 
-int count_word(char *str)
+char    **ft_split(char *str)
 {
-	int i;
-	int count;
-
-	i = 0;
-	count = 0;
-	while (str[i])
-	{
-		if (!is_delimiter(*str))
-		{
-			i++;
-			count++;
-		}
-		else
-			i++;
-	}
-	return (count);
-}
-
-char *get_word(char *str)
-{
-	int i;
-	char *word;
-
-	i = 0;
-	while (str[i] && !is_delimiter(str[i]))
-		i++;
-	word = (char *)malloc(sizeof(char) * i + 1);
-	if (!word)
-		return (NULL);
-	i = 0;
-	while (str[i] && !is_delimiter(str[i]))
-	{
-		word[i] = str[i];
-		i++;
-	}
-	word[i] = '\0';
-	return (word);
-}
-
-char **ft_split(char *str)
-{
+	int row;
+	int col;
 	int i;
 	char **split;
 
 	i = 0;
-	split = (char **)malloc(sizeof(char *) * count_word(str) + 1);
+	row = 0;
+	split = (char **)malloc(sizeof(char *) * 256);
 	if (!split)
 		return (NULL);
-	while (*str)
+	while (is_delimiter(str[i]))
+		i++;
+	while (str[i])
 	{
-		while (*str && is_delimiter(*str))
-			str++;
-		if (*str && !is_delimiter(*str))
-		{
-			split[i] = get_word(str);
+		col = 0;
+		if (!(split[row] = (char *)malloc(sizeof(char) * 4099)))
+			return (NULL);
+		while (!is_delimiter(str[i]))
+			split[row][col++] = str[i++];
+		while (is_delimiter(str[i]))
 			i++;
-		}
-		while (*str && !is_delimiter(*str))
-			str++;
+		split[row][col] = '\0';
+		row++;
 	}
-	split[i] = NULL;
+	split[row] = NULL;
 	return (split);
 }
 

@@ -5,74 +5,64 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 13:52:58 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/11 10:57:40 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/11 10:52:13 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/13 16:27:28 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int len_nbr(int n)
+int count_int(int nbr)
 {
-	int i;
+	int i = 0;
 
-	i = 0;
-	if (n <= 0)
+	if (nbr <= 0)
 		i = 1;
-	while (n)
+	while (nbr)
 	{
-		n = n / 10;
+		nbr = nbr / 10;
 		i++;
 	}
 	return (i);
 }
 
-char *ft_itoa(int n)
+char *ft_itoa(int nbr)
 {
-	long len;
-	long nb;
+	int len;
+	unsigned int nb;
 	char *mem;
 
-	len = len_nbr(n);
-	mem = (char *)malloc(sizeof(char) * (len + 1));
+	len = count_int(nbr);
+	mem = (char *)malloc(sizeof(char ) * len + 1);
 	if (!mem)
 		return (NULL);
 	mem[len--] = '\0';
-	if (n < 0)
-		nb = -n;
+	if (nbr < 0)
+		nb = -nbr;
 	else
-		nb = n;
+		nb = nbr;
 	while (len >= 0)
 	{
-		mem[len] = (nb % 10) + 48;
+		mem[len] = nb % 10 + 48;
 		len--;
-		nb /= 10;
+		nb = nb / 10;
 	}
-	if (n < 0)
+	if (nbr < 0)
 		mem[0] = '-';
 	return (mem);
 }
 
 #include <stdio.h>
-#include <stdlib.h>
+#include <limits.h>
 
-int main() {
-    int num1 = 123;
-    int num2 = -4567;
-    int num3 = 0;
-
-    char *str1 = ft_itoa(num1);
-    char *str2 = ft_itoa(num2);
-    char *str3 = ft_itoa(num3);
-
-    printf("Integer: %d, String: %s\n", num1, str1);
-    printf("Integer: %d, String: %s\n", num2, str2);
-    printf("Integer: %d, String: %s\n", num3, str3);
+int main()
+{
+    // int number = -2147483648;
+    char *result = ft_itoa(INT_MAX);
+    printf("Result: %s\n", result);
 
     // Don't forget to free the allocated memory
-    free(str1);
-    free(str2);
-    free(str3);
+    free(result);
 
     return 0;
 }
