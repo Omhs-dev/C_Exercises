@@ -5,35 +5,38 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 10:52:13 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/13 16:27:28 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/15 18:34:45 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/15 19:00:57 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
+#include <limits.h>
 
-int count_int(int nbr)
+int count_int(int n)
 {
-	int i = 0;
+	int len = 0;
 
-	if (nbr <= 0)
-		i = 1;
-	while (nbr)
+	if (n < 0)
+		len = 1;
+	while (n)
 	{
-		nbr = nbr / 10;
-		i++;
+		n = n / 10;
+		len++;
 	}
-	return (i);
+	return (len);
 }
 
-char *ft_itoa(int nbr)
+char	*ft_itoa(int nbr)
 {
-	int len;
 	unsigned int nb;
+	int len;
 	char *mem;
 
+	nb = nbr;
 	len = count_int(nbr);
-	mem = (char *)malloc(sizeof(char ) * len + 1);
+	mem = (char *)malloc(sizeof(char) * len + 1);
 	if (!mem)
 		return (NULL);
 	mem[len--] = '\0';
@@ -52,17 +55,8 @@ char *ft_itoa(int nbr)
 	return (mem);
 }
 
-#include <stdio.h>
-#include <limits.h>
-
 int main()
 {
-    // int number = -2147483648;
-    char *result = ft_itoa(INT_MAX);
-    printf("Result: %s\n", result);
-
-    // Don't forget to free the allocated memory
-    free(result);
-
-    return 0;
+	printf("%s\n", ft_itoa(INT_MIN));
+	return (0);
 }

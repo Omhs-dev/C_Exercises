@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_foreach.c                                  :+:      :+:    :+:   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 10:40:58 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/13 18:58:56 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/15 22:05:55 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/15 22:17:04 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-typedef struct    s_list
+int	ft_atoi_base(const char *str, int str_base)
 {
-    struct s_list *next;
-    void          *data;
-}                 t_list;
+	int sign;
+	int opr;
+	int i;
 
-void    ft_list_foreach(t_list *begin_list, void (*f)(void *))
-{
-	while (begin_list)
+	sign = 1;
+	if (str[i] == '-')
 	{
-		(*f)(begin_list->data);
-		begin_list = begin_list->next;
+		sign = -1;
+		i++;
 	}
+	while (str[i])
+	{
+		opr *= str_base;
+		if (str[i] >= '0' && str[i] <= '9')
+			opr += str[i] - '0';
+		else if (str[i] >= 'A' && str[i] <= 'Z')
+			opr += str[i] - '7';
+		else if (str[i] >= 'a' && str[i] <= 'z')
+			opr += str[i] - 'W';
+		i++;
+	}
+	return (sign * sign);
 }

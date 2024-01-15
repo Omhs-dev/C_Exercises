@@ -5,39 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 17:56:09 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/11 12:06:02 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/13 17:49:34 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/13 18:52:13 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 
-int main(int argc, char *argv[])
+void fprime(int nbr)
 {
-	int i;
-	int num;
+	int i = 2;
 
-	if (argc == 2)
+	if (nbr == 1)
 	{
-		i = 1;
-		num = atoi(argv[1]);
-		if (num == 1)
-			printf("1");
-		while (num >= ++i)
-		{
-			if (num % i == 0)
-			{
-				printf("%d", i);
-				if (num == i)
-					break ;
-				printf("*");
-				num /= i;
-				i = 1;
-			}
-		}
-		
+		printf("1");
+		return ;
 	}
+	while (nbr >= i)
+	{
+		if (nbr % i == 0)
+		{
+			printf("%d", i);
+			if (nbr != i)
+				printf("*");
+			nbr = nbr / i;
+			i--;
+		}
+		i++;
+	}
+}
+
+int main(int argc, char **argv)
+{
+	if (argc == 2)
+		fprime(atoi(argv[1]));
 	printf("\n");
 	return (0);
 }

@@ -5,6 +5,7 @@
 		"ft_list.h": "c",
 		"stdlib.h": "c",
 		"string.h": "c",
-		"sstream": "c"
+		"sstream": "c",
+		"limits.h": "c"
 	}
 }

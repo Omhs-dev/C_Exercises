@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 09:32:04 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/13 19:14:57 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/15 18:06:00 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/15 18:28:08 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,49 +17,79 @@ int is_delimiter(char c)
 	return (c == ' ' || c == '\t' || c == '\n');
 }
 
-char    **ft_split(char *str)
+int count_word(char *str)
 {
-	int row;
-	int col;
-	int i;
-	char **split;
+	int i = 0;
+	int length = 0;
 
-	i = 0;
-	row = 0;
-	split = (char **)malloc(sizeof(char *) * 256);
-	if (!split)
-		return (NULL);
-	while (is_delimiter(str[i]))
-		i++;
 	while (str[i])
 	{
-		col = 0;
-		if (!(split[row] = (char *)malloc(sizeof(char) * 4099)))
-			return (NULL);
-		while (!is_delimiter(str[i]))
-			split[row][col++] = str[i++];
-		while (is_delimiter(str[i]))
+		if (str[i] && !is_delimiter(str[i]))
+		{
 			i++;
-		split[row][col] = '\0';
-		row++;
+			length++;
+		}
+		i++;
 	}
-	split[row] = NULL;
+	return (length);
+}
+
+char *get_word(char *str)
+{
+	int i;
+	char *word;
+
+	i = 0;
+	while (str[i] && !is_delimiter(str[i]))
+		i++;
+	word = (char *)malloc(sizeof(char) * i + 1);
+	if (!word)
+		return (NULL);
+	i = 0;
+	while (str[i] && !is_delimiter(str[i]))
+	{
+		word[i] = str[i];
+		i++;
+	}
+	word[i] = '\0';
+	return (word);
+}
+
+char    **ft_split(char *str)
+{
+	int i = 0;
+	char **split;
+
+	split = (char **)malloc(sizeof(char *) * count_word(str) + 1);
+	if (!split)
+		return (NULL);
+	while (*str)
+	{
+		while (*str && is_delimiter(*str))
+			str++;
+		if (*str && !is_delimiter(*str))
+		{
+			split[i] = get_word(str);
+			i++;
+		}
+		while (*str && !is_delimiter(*str))
+			str++;
+	}
+	split[i] = NULL;
 	return (split);
 }
 
 #include <stdio.h>
 
-int	main(void)
+int main()
 {
-	int		idx;
-	char	**tab;
+	int i = 0;
+	char **str = ft_split("this is the line to split");
 
-	idx = 0;
-	tab = ft_split("The prophecy is true");
-	while (idx < 4)
+	while (i < 6)
 	{
-		printf("String %d : %s\n", idx, tab[idx]);
-		idx++;
+		printf("word %d: %s\n", i, str[i]);
+		i++;
 	}
 	return (0);
 }

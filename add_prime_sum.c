@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 15:50:53 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/15 17:25:53 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/15 17:39:35 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/15 18:02:20 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void ft_putchar(char c)
 
 int mini_atoi(char *str)
 {
-	int opr = 0;
+	int opr;
 
+	opr = 0;
 	while (*str)
 	{
 		opr = opr * 10 + *str - '0';
@@ -29,14 +30,14 @@ int mini_atoi(char *str)
 	return (opr);
 }
 
-void mini_putnbr(int n)
+void mini_putnbr(int nb)
 {
-	if (n >= 10)
-		mini_putnbr(n / 10);
-	ft_putchar((n % 10 + '0'));
+	if (nb >= 10)
+		mini_putnbr(nb / 10);
+	ft_putchar(nb % 10 + '0');
 }
 
-int check_prime(int n)
+int is_prime(int n)
 {
 	int i = 2;
 
@@ -53,25 +54,25 @@ int check_prime(int n)
 
 void add_prime_sum(char *str)
 {
-	int n;
 	int i = 2;
-	int sum = 0;
+	int num = 0;
+	int nb;
 
-	n = mini_atoi(str);
-	while (i <= n)
+	nb = mini_atoi(str);
+	while (i <= nb)
 	{
-		if (check_prime(i))
-			sum = sum + i;
+		if (is_prime(i))
+			num = num + i;
 		i++;
 	}
-	mini_putnbr(sum);
+	mini_putnbr(num);
 }
 
 int main(int argc, char **argv)
 {
 	if (argc == 2)
 		add_prime_sum(argv[1]);
-	if (argc == 1 || argc > 2)
+	if (argc < 2 || argc > 2)
 		ft_putchar('0');
 	ft_putchar('\n');
 	return (0);

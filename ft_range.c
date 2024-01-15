@@ -1,26 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_foreach.c                                  :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 10:40:58 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/13 18:58:56 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/15 22:19:19 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/15 22:24:11 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-typedef struct    s_list
-{
-    struct s_list *next;
-    void          *data;
-}                 t_list;
+#include <stdlib.h>
 
-void    ft_list_foreach(t_list *begin_list, void (*f)(void *))
+int     *ft_range(int start, int end)
 {
-	while (begin_list)
+	int len;
+	int i;
+	int *mem;
+
+	i = 0;
+	len = abs(end - start) + 1;
+	mem = (int *)malloc(sizeof(int) * len);
+	if (!mem)
+		return (NULL);
+	while (i < len)
 	{
-		(*f)(begin_list->data);
-		begin_list = begin_list->next;
+		if (start > end)
+		{
+			mem[i] = start;
+			start++;
+			i++;
+		}
+		else
+		{
+			mem[i] = start;
+			start--;
+			i++;
+		}
 	}
+	return (mem);
 }
