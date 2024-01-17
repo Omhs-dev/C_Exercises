@@ -1,28 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_size.c                                     :+:      :+:    :+:   */
+/*   ft_strcspn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 22:17:33 by ohamadou          #+#    #+#             */
-/*   Updated: 2024/01/15 22:18:58 by ohamadou         ###   ########.fr       */
+/*   Created: 2024/01/17 20:45:15 by ohamadou          #+#    #+#             */
+/*   Updated: 2024/01/17 20:55:48 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-typedef struct    s_list
-{
-    struct s_list *next;
-    void          *data;
-}                 t_list;
+#include <stdio.h>
+#include <string.h>
 
-int	ft_list_size(t_list *begin_list)
+size_t	ft_strcspn(const char *s, const char *reject)
 {
-	int size = 0;
+	int i = 0;
+	int j;
 
-	while (size < begin_list)
+	while (s[i])
 	{
-		begin_list = begin_list->next;
-		size++;
+		j = 0;
+		while (reject[j])
+		{
+			if (s[i] == reject[j])
+				return (i);
+			j++;
+		}
+		i++;
 	}
+	return (i);
+}
+
+int	main()
+{
+    char str[] = "ehom";
+    char str1[] = "ellh";
+    int val = strcspn(str1, str);
+    printf("First matched character is at %d\n", val+1);
+    return 0;
 }

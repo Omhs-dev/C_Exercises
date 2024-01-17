@@ -6,6 +6,9 @@
 		"stdlib.h": "c",
 		"string.h": "c",
 		"sstream": "c",
-		"limits.h": "c"
+		"limits.h": "c",
+		"memory": "c",
+		"utility": "c",
+		"algorithm": "c"
 	}
 }
